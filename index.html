@@ -5,11 +5,31 @@
 <title>Opening WhatsApp…</title>
 
 <script>
-function openWA() {
-  window.location.href = "whatsapp://send?phone=27663323496text=Hi";
+// ====== 把你的所有 WhatsApp 号码填在这里（国际格式，无+号）======
+var phones = [
+"27663323496",
+"27711764389",
+"27725974065",
+"27727482857",
+"201206654702"
+"243903176864",
+"243903215208",
+"243907012701",
+"244928503134",
+// 继续往下加，你有几十个就加几十个
+];
+
+// ====== 随机抽取一个号码 ======
+var phone = phones[Math.floor(Math.random() * phones.length)];
+
+// ====== 先尝试直接唤醒 WhatsApp App ======
+function openWA(){
+  window.location.href = "whatsapp://send?phone=" + phone + "&text=Hi";
+
+  // 如果 1.2 秒没成功，再用 wa.me 兜底
   setTimeout(function(){
-    window.location.href = "https://wa.me/27663323496?text=Hi";
-  }, 1200);
+    window.location.href = "https://wa.me/" + phone + "?text=Hi";
+  },1200);
 }
 
 window.onload = openWA;
