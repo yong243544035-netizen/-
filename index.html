@@ -2,39 +2,57 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Opening WhatsApp…</title>
+<title>Contact on WhatsApp</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:sans-serif;
+  background:#ffffff;
+  text-align:center;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div>
+  <h2>Tap anywhere to chat on WhatsApp</h2>
+</div>
 
 <script>
-// ====== 把你的所有 WhatsApp 号码填在这里（国际格式，无+号）======
+// ===== 把你的所有号码放这里（国际格式，无+）=====
 var phones = [
 "27663323496",
 "27711764389",
 "27725974065",
-"27727482857",
-"201206654702"
-"243903176864",
-"243903215208",
-"243907012701",
-"244928503134",
-// 继续往下加，你有几十个就加几十个
+"27727482857"
+// 继续加
 ];
 
-// ====== 随机抽取一个号码 ======
-var phone = phones[Math.floor(Math.random() * phones.length)];
+// 随机选一个号码
+function getRandomPhone(){
+  return phones[Math.floor(Math.random()*phones.length)];
+}
 
-// ====== 先尝试直接唤醒 WhatsApp App ======
-function openWA(){
+// 点击屏幕任意位置触发
+document.body.addEventListener("click", function(){
+  var phone = getRandomPhone();
+
+  // 先唤醒 App
   window.location.href = "whatsapp://send?phone=" + phone + "&text=Hi";
 
-  // 如果 1.2 秒没成功，再用 wa.me 兜底
+  // 兜底
   setTimeout(function(){
     window.location.href = "https://wa.me/" + phone + "?text=Hi";
   },1200);
-}
-
-window.onload = openWA;
+});
 </script>
 
-</head>
-<body style="margin:0;background:#ffffff;"></body>
+</body>
 </html>
