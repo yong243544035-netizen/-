@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Opening WhatsApp…</title>
+
+<script>
+function openWA() {
+  window.location.href = "whatsapp://send?phone=27663323496text=Hi";
+  setTimeout(function(){
+    window.location.href = "https://wa.me/27663323496?text=Hi";
+  }, 1200);
+}
+
+window.onload = openWA;
+</script>
+
+</head>
+<body style="margin:0;background:#ffffff;"></body>
+</html>
